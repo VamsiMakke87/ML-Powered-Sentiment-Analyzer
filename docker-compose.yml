@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  sentiment-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sentiment-analyzer-api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - DEBUG=False
+      - MODEL_PATH=models/sentiment_model.keras
+      - TOKENIZER_PATH=models/tokenizer.pkl
+    volumes:
+      # Mount models directory to persist trained models
+      - ./models:/app/models:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    networks:
+      - sentiment-network
+
+networks:
+  sentiment-network:
+    driver: bridge

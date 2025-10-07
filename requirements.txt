@@ -1,0 +1,22 @@
+# Core ML and Data Processing
+tensorflow==2.15.0
+numpy==1.24.3
+pandas==2.0.3
+scikit-learn==1.3.0
+
+# NLP Libraries
+nltk==3.8.1
+
+# Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Production
+gunicorn==21.2.0
+
+# Model Optimization
+tensorflow-model-optimization==0.7.5
